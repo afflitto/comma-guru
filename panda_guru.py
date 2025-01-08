@@ -49,6 +49,8 @@ def flash(args):
 def recover(args):
     if args.bin is None:
         raise ValueError("--bin is required")
+    if not os.path.isfile(args.bin):
+        raise ValueError(f"{args.bin} is not a file")
     
     panda = Panda(args.serial)
     dfu_serial = panda.get_dfu_serial()
